@@ -5,14 +5,19 @@
 int main() {
 	Vm vm;
 	Instr instructions[] = {
-		{PUSH, 4},
-		{PUSH, 2},
-		{ADD, NULL}
+		{PUSH, {3, TYPE_INT}},
+		{PUSH, {3, TYPE_INT}},
+		{ADD, VM_NULL}
 	};
 
 	Vm_init(&vm, instructions, sizeof(instructions) / sizeof(Instr));
-	Vm_execute(&vm);
-	Vm_destroy(&vm);
+	Vm_dump_stack(&vm);
+	Vm_dump_instr(&vm);
 
+	Vm_execute(&vm);
+	Vm_dump_stack(&vm);
+	Vm_dump_instr(&vm);
+
+	Vm_destroy(&vm);
 	return 0;
 }
